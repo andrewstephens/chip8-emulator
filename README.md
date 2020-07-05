@@ -1,2 +1,2 @@
 # Chip-8 Emulator 
-Very much a work in progress. I'm using this as a another learning tool for learning Go.
+Very much a work in progress. This is just another venue for learning Go.
