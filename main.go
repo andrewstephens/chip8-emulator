@@ -44,9 +44,32 @@ type Chip8 struct {
 func main() {
 
 	chip8 := Chip8{}
-	chip8.pc = StartAddress
-	chip8.loadGame("c8games/PONG")
+	chip8.pc = 0x200 // Start of program memory address
+	chip8.I = 0
+	chip8.sp = 0
+	chip8.opcode = 0
+
+	// Reset / Clear Graphics
+	chip8.gfx = [64 * 32]byte{}
+
+	// Clear the registers
+	chip8.V = [16]byte{}
+
+	// Clear the memory
+	chip8.memory = [4096]byte{}
+
+	// Clear the Stack
+	chip8.stack = [16]uint16{}
+
+	// Reset timers
+	chip8.delayTimer = 0
+	chip8.soundTimer = 0
+
+	// Load Font
 	chip8.loadFontSet()
+
+	// Load Game
+	chip8.loadGame("c8games/PONG")
 
 	for i := 0; i < 100; i++ {
 		chip8.emulateCycle()
