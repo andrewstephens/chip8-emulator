@@ -120,6 +120,9 @@ func (ch *Chip8) processOpcode(opCode uint16) {
 		value := byte(opCode & 0x00FF)
 		ch.registers[register] = value
 		ch.pc += 2
+	case 0x7000:
+		ch.registers[(opCode&0x0F00)>>8] = ch.registers[(opCode&0x0F00)>>8] + byte(opCode&0x00FF)
+		ch.pc += 2
 	}
 }
 
